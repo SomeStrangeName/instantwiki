@@ -28,7 +28,9 @@ sudo apt-get install -y docker-engine
 
 # 
 sudo usermod -aG docker vagrant
+# maybe not the best idea :)
+sudo mkdir -p /data/wiki
+sudo mkdir -p /data/mysql
 # should be replaced with a docker compose file
-sudo docker create -v /var/lib/mysql --name data-mysql mysql
-sudo docker run --name mysql -e MYSQL_ROOT_PASSWORD=SomeStrangePassword --volumes-from data-mysql -p 3306:3306 -d mysql:latest
-sudo docker run --name wiki --link mysql:mysql -p 8080:80 -v /data:/data -d synctree/mediawiki
+sudo docker run --name mysql -e MYSQL_ROOT_PASSWORD=SomeStrangePassword -v /data/mysql:/var/lib/mysql -p 3306:3306 -d mariadb:latest
+sudo docker run --name wiki --link mysql:mysql -p 8080:80 -v /data:/data -d mediawiki:latest
