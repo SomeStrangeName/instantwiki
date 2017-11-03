@@ -31,3 +31,8 @@ To build the wiki you need following software packages (available in Debian 9 st
 4. open url in your browser: http://192.168.33.88:8080/
 
 You will see the initial MediaWiki setup screen.
+
+## Used software inside the vm
+Two docker images:
+1. MariaDB: https://hub.docker.com/_/mariadb/
+2. MediaWiki: https://hub.docker.com/_/mediawiki/
