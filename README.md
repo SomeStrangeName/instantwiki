@@ -36,3 +36,6 @@ You will see the initial MediaWiki setup screen.
 Two docker images:
 1. MariaDB: https://hub.docker.com/_/mariadb/
 2. MediaWiki: https://hub.docker.com/_/mediawiki/
+
+# Helpful links
+* [Mediawiki Backup script](https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki/Duesentrieb%27s_backup_script)
