@@ -1,0 +1,4 @@
+CREATE DATABASE mywiki;
+CREATE USER 'mywikiuser'@'%' IDENTIFIED BY 'someStrangePassword';
+GRANT SELECT, UPDATE, INSERT, DELETE, ALTER, CREATE, INDEX, USAGE ON mywiki . * TO 'mywikiuser'@'%';
+FLUSH PRIVILEGES;

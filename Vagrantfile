@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "debian/stretch64"
   config.vm.provision :shell, path: "bootstrap.sh"
   config.vm.define "instantwiki"
+  config.vm.hostname="instantwiki"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs

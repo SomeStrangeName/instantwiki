@@ -13,24 +13,37 @@ sudo echo 'deb http://security.debian.org/ stretch/updates main contrib non-free
 sudo echo 'deb-src http://security.debian.org/ stretch/updates main contrib non-free' >> /etc/apt/sources.list
 sudo echo 'deb http://ftp.de.debian.org/debian/ stretch-updates main contrib non-free' >> /etc/apt/sources.list
 sudo echo 'deb-src http://ftp.de.debian.org/debian/ stretch-updates main contrib non-free' >> /etc/apt/sources.list
+# to load keys
 # load docker key
 sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+# update to have docker pages in
 sudo apt-get update
-# ensure latest packages are installed
+# ensure latest packages
 sudo apt-get dist-upgrade -y
-# install curl and a mysql client to access database in docker container
-sudo apt-get install -y curl default-mysql-client
-# install docker
-sudo apt-get install -y docker-engine
-# install docker compose
-# not used
-#sudo apt-get install -y docker-compose
+sudo apt-get install -y curl default-mysql-client vim git docker-engine docker-compose
 
 # 
 sudo usermod -aG docker vagrant
+mycnf=~/.my.cnf
+dbuser="root"
+dbpw=`head /dev/urandom | tr -dc A-Za-z0-9 | head -c64 ; echo ''`
+echo $dbpw
+touch $mycnf
+echo '[mysqldump]' > $mycnf
+echo "user=${dbuser}" >> $mycnf
+echo "password=${dbpw}" >> $mycnf
+
 # maybe not the best idea :)
-sudo mkdir -p /data/wiki
+sudo mkdir -p /data/wiki/images
 sudo mkdir -p /data/mysql
+
+# to restore existing image files
+#sudo tar -C /data/wiki/images/ -xvf /vagrant/wiki_backup/wiki.files.tgz ./images
+#sudo chown root.www-data /data/wiki/images/* -R
+
 # should be replaced with a docker compose file
-sudo docker run --name mysql -e MYSQL_ROOT_PASSWORD=SomeStrangePassword -v /data/mysql:/var/lib/mysql -p 3306:3306 -d mariadb:latest
-sudo docker run --name wiki --link mysql:mysql -p 8080:80 -v /data:/data -d mediawiki:latest
+sudo docker run --name mysql -e MYSQL_ROOT_PASSWORD=${dbpw} -v /data/mysql:/var/lib/mysql -p 3306:3306 -d mariadb:latest
+sudo docker run --name wiki --link mysql:mysql -p 8080:80 -v /data/wiki/images:/var/www/html/images -d mediawiki:latest
+sudo mysql -h 127.0.0.1 -u ${dbuser} -p${dbpw} < /vagrant/wiki_init/createdb.sql
+sudo gunzip < /vagrant/wiki_backup/wiki.sql.gz | mysql -h 127.0.0.1 -u ${dbuser} -p${dbpw} mywiki
+
