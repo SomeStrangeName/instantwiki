@@ -39,7 +39,10 @@ sudo mkdir -p /data/mysql
 
 # to restore existing image files
 #sudo tar -C /data/wiki/ -xvf /vagrant/wiki_backup/wiki.files.tgz ./images
-#sudo chown root.www-data /data/wiki/images/* -R
+sudo chown root.www-data /data/wiki/images
+sudo chown root.www-data /data/wiki/images/* -R
+sudo chmod o-rwx /data/wiki/images/* -R
+sudo chmod ug+rw /data/wiki/images/* -R
 
 # should be replaced with a docker compose file
 # mariadb container
