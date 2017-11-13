@@ -13,7 +13,7 @@ It will use libvirt as provider and creates a new QEMU/KVM with a Debian 9 (stre
 
 After that a docker environment will be installed to setup a running Mediawiki and a database instance.
 
-## Prerequisites
+## Prerequisites for the host system
 To build the wiki you need following software packages (available in Debian 9 stretch):
 
 | Package         | Version       |
@@ -33,6 +33,11 @@ To build the wiki you need following software packages (available in Debian 9 st
 You will see the initial MediaWiki setup screen.
 
 ## Used software inside the vm
+ - Docker version: Docker version 17.09.0-ce, build afdb6d4 (or later)
+ - Docker-compose version: docker-compose version 1.17.1, build 6d101fb
+ - a mysql client
+ - vim
+
 Two docker images:
 1. MariaDB: https://hub.docker.com/_/mariadb/
 2. MediaWiki: https://hub.docker.com/_/mediawiki/

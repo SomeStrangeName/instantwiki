@@ -1,28 +1,5 @@
 #!/bin/bash
 set -x -e
-sudo apt-get update
-sudo apt-get install -y apt-transport-https dirmngr
-# add docker repos
-sudo touch /etc/apt/sources.list.d/docker.list 
-sudo echo 'deb https://apt.dockerproject.org/repo debian-stretch main' >> /etc/apt/sources.list.d/docker.list
-# set source list to Debian default values
-# https would be nice :)
-sudo echo 'deb http://ftp.de.debian.org/debian/ stretch main non-free contrib' > /etc/apt/sources.list
-sudo echo 'deb-src http://ftp.de.debian.org/debian/ stretch main non-free contrib' >> /etc/apt/sources.list
-sudo echo 'deb http://security.debian.org/ stretch/updates main contrib non-free' >> /etc/apt/sources.list
-sudo echo 'deb-src http://security.debian.org/ stretch/updates main contrib non-free' >> /etc/apt/sources.list
-sudo echo 'deb http://ftp.de.debian.org/debian/ stretch-updates main contrib non-free' >> /etc/apt/sources.list
-sudo echo 'deb-src http://ftp.de.debian.org/debian/ stretch-updates main contrib non-free' >> /etc/apt/sources.list
-# to load keys
-# load docker key
-sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-# update to have docker pages in
-sudo apt-get update
-# ensure latest packages
-sudo apt-get dist-upgrade -y
-sudo apt-get install -y curl default-mysql-client vim git docker-engine docker-compose
-
-# 
 sudo usermod -aG docker vagrant
 mycnf=~/.my.cnf
 dbuser="root"
@@ -40,10 +17,10 @@ sudo mkdir -p /data/mysql
 # to restore existing image files
 #sudo tar -C /data/wiki/ -xvf /vagrant/wiki_backup/wiki.files.tgz ./images
 sudo chown root.www-data /data/wiki/images
-sudo chown root.www-data /data/wiki/images/* -R
+#sudo chown root.www-data /data/wiki/images/* -R
 sudo chmod ug+rwx /data/wiki/images
-sudo chmod o-rwx /data/wiki/images/* -R
-sudo chmod ug+rw /data/wiki/images/* -R
+#sudo chmod o-rwx /data/wiki/images/* -R
+#sudo chmod ug+rw /data/wiki/images/* -R
 
 # should be replaced with a docker compose file
 # mariadb container
