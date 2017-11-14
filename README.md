@@ -14,6 +14,7 @@ It will use libvirt as provider and creates a new QEMU/KVM with a Debian 9 (stre
 After that a docker environment will be installed to setup a running Mediawiki and a database instance.
 
 ## Prerequisites for the host system
+### Debian stretch 9
 To build the wiki you need following software packages (available in Debian 9 stretch):
 
 | Package         | Version       |
@@ -23,6 +24,11 @@ To build the wiki you need following software packages (available in Debian 9 st
 | vagrant         | 1.9.1         |
 | vagrant-libvirt | 0.0.37-1      |
 | qemu-kvm        | 2.8           |
+
+### Windows 7
+On Windows the script works with VirtualBox and Vagrant (latest version). You will find this here:
+ - https://www.virtualbox.org/
+ - https://www.vagrantup.com/downloads.html
 
 ## Usage
 1. `git clone https://github.com/SomeStrangeName/instantwiki.git`
