@@ -15,6 +15,16 @@ After that a docker environment will be installed to setup a running Mediawiki a
 
 ## Prerequisites for the host system
 ### Debian stretch 9
+Ensure your CPU supports virtualization techniques and your kernel supports KVM already.
+
+You can check with following commands:
+ - `grep -i vmx /proc/cpuinfo`
+If result is empty, your CPU seems not supporting vmx.
+
+With following command you can check if kvm modules are loaded:
+ - `lsmod | grep kvm`
+
+
 To build the wiki you need following software packages (available in Debian 9 stretch):
 
 | Package         | Version       |
