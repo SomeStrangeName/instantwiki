@@ -23,7 +23,10 @@ To build the wiki you need following software packages (available in Debian 9 st
 | libvirt0        | 3.0.0-4       |
 | vagrant         | 1.9.1         |
 | vagrant-libvirt | 0.0.37-1      |
+| vagrant-sshfs   | 1.3.0-2       |
 | qemu-kvm        | 2.8           |
+
+Ensure your user is in sudo group (/etc/group).
 
 ### Windows 7
 On Windows the script works with VirtualBox and Vagrant (latest version). You will find this here:
