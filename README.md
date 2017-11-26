@@ -38,6 +38,11 @@ To build the wiki you need following software packages (available in Debian 9 st
 
 Ensure your user is in sudo group (/etc/group).
 
+### Networking
+You may notice that your virtual machine is not reachable over public_network IP from your own host. Here following links may help:
+ - https://wiki.math.cmu.edu/iki/wiki/tips/20140303-kvm-macvtap.html
+ - https://wiki.mef.net/display/CESG/Hairpin+Switching
+
 ### Windows 7
 On Windows the script works with VirtualBox and Vagrant (latest version). You will find this here:
  - https://www.virtualbox.org/
