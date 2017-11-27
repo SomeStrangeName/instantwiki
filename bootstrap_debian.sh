@@ -22,8 +22,8 @@ sudo apt-get update
 sudo apt-get -y install docker-ce 
 echo "> Cleaning up"
 sudo apt-get clean
-echo "> Testing docker"
-sudo docker run hello-world
+#echo "> Testing docker"
+#sudo docker run hello-world
 echo "> Installing docker compose 1.17.1 according to: https://docs.docker.com/compose/install/#install-compose"
 sudo curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 echo "> Apply executable permissions to the binary" 
