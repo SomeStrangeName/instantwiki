@@ -18,7 +18,7 @@ After that a docker environment will be installed to setup a running Mediawiki a
 Ensure your CPU supports virtualization techniques and your kernel supports KVM already.
 
 You can check with following commands:
- - `grep -i vmx /proc/cpuinfo`
+ - `grep -E '^flags.*\b(vmx|svm)\b' /proc/cpuinfo `
 If result is empty, your CPU seems not supporting vmx.
 
 With following command you can check if kvm modules are loaded:
